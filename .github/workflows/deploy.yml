@@ -42,8 +42,9 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: github-pages
+          name: build-files-${{ github.run_id }}
           path: build/
+          retention-days: 1
 
   deploy:
     name: Deploy to GitHub Pages
@@ -65,7 +66,7 @@ jobs:
       - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
-          name: github-pages
+          name: build-files-${{ github.run_id }}
           path: build/
 
       - name: Upload to GitHub Pages
