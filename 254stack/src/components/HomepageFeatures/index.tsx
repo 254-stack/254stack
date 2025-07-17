@@ -1,65 +1,103 @@
-import type {ReactNode} from 'react';
+import React from 'react';
 import clsx from 'clsx';
-import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
-  description: ReactNode;
+  icon: string;
+  description: JSX.Element;
 };
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'Open Source First',
+    icon: '🌟',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        All our projects are open source, ensuring transparency, 
+        collaboration, and sustainable development for Africa's digital future.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Digital Public Infrastructure',
+    icon: '🏗️',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Building the foundational digital systems that governments and 
+        organizations across Africa need to serve their citizens effectively.
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Community Driven',
+    icon: '🤝',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        A diverse community of developers, designers, and innovators from 
+        across Kenya and Africa working together to solve real problems.
+      </>
+    ),
+  },
+  {
+    title: 'Scalable Solutions',
+    icon: '📈',
+    description: (
+      <>
+        Our solutions are designed to scale from local implementations to 
+        continent-wide deployments, ensuring maximum impact.
+      </>
+    ),
+  },
+  {
+    title: 'Knowledge Sharing',
+    icon: '📚',
+    description: (
+      <>
+        We believe in sharing knowledge and best practices to accelerate 
+        digital transformation across the continent.
+      </>
+    ),
+  },
+  {
+    title: 'Innovation Hub',
+    icon: '💡',
+    description: (
+      <>
+        A space for experimenting with cutting-edge technologies and 
+        methodologies to solve uniquely African challenges.
       </>
     ),
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Feature({icon, title, description}: FeatureItem): JSX.Element {
   return (
-    <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
+    <div className={clsx('col col--4', styles.feature)}>
+      <div className={styles.featureCard}>
+        <div className={styles.featureIcon}>
+          <span className={styles.icon}>{icon}</span>
+        </div>
+        <div className={styles.featureContent}>
+          <h3 className={styles.featureTitle}>{title}</h3>
+          <p className={styles.featureDescription}>{description}</p>
+        </div>
       </div>
     </div>
   );
 }
 
-export default function HomepageFeatures(): ReactNode {
+export default function HomepageFeatures(): JSX.Element {
   return (
     <section className={styles.features}>
       <div className="container">
+        <div className={styles.featuresHeader}>
+          <h2 className={styles.featuresTitle}>Why Choose 254stack?</h2>
+          <p className={styles.featuresSubtitle}>
+            We're building more than just software - we're creating the digital 
+            infrastructure that will power Africa's future.
+          </p>
+        </div>
         <div className="row">
           {FeatureList.map((props, idx) => (
             <Feature key={idx} {...props} />
